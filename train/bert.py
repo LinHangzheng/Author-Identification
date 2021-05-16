@@ -11,8 +11,6 @@ import pickle
 from tqdm import  tqdm
 # settings
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-path = os.getcwd()
-print (path) 
 
 def setup_seed(seed):
    torch.manual_seed(seed)
@@ -26,7 +24,7 @@ setup_seed(20)
 epochs = 30
 batch_size = 20
 
-data = pickle.load(open(path+"/data/processed_train","rb"))
+data = pickle.load(open("../data/processed_train","rb"))
 all_input_ids = data[0]
 labels= data[1]
 
@@ -60,8 +58,8 @@ def flat_accuracy(preds, labels):
     return accuracy_score(labels_flat, pred_flat)
 
 def save_checkpoint(model, epoch, avg_val_accuracy,avg_val_loss):
-    pickle.dump(model,open(path+"/checkpoints/bert_epoch_"+str(epoch+1),"wb"))
-    pickle.dump(avg_val_accuracy,open(path+"/checkpoints/epoch_"+
+    pickle.dump(model,open("../checkpoints/bert_epoch_"+str(epoch+1),"wb"))
+    pickle.dump(avg_val_accuracy,open("../checkpoints/epoch_"+
                               str(epoch+1)+"acc_"+str(round(avg_val_accuracy,2))+
                               "_loss_"+str(round(avg_val_loss,2)),"wb"))
 
