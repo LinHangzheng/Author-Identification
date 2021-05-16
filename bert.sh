@@ -5,7 +5,7 @@
 #BSUB -n 1
 #BSUB -R span[ptile=1]   
 #BSUB -J bert
-#BSUB -R "select[ngpus>0] rusage[ngpus_shared=2]"
+#BSUB -R "select[ngpus>0] rusage[ngpus_shared=24]"
 #BSUB -a python
 nvidia-smi
  
